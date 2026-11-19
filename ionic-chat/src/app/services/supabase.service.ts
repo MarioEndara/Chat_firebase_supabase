@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
-import { getAuth } from 'firebase/auth'; // <-- Importamos la autenticación de Firebase
+import { getAuth } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,6 @@ export class SupabaseService {
   constructor() {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey, {
       accessToken: async () => {
-        // Aquí conectamos: le decimos a Supabase que pida el token a Firebase
         const auth = getAuth();
         const user = auth.currentUser;
         
