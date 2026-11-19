@@ -22,14 +22,16 @@ export class LoginPage {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  async onLogin() {
+    async onLogin() {
     if (!this.email || !this.password) {
       alert('Por favor, llena todos los campos');
       return;
     }
+
     try {
       await this.authService.login(this.email, this.password);
       alert('¡Login exitoso!');
+      this.router.navigate(['/rooms']); // <-- ESTO ES LO NUEVO
     } catch (error: any) {
       alert('Error al iniciar sesión: ' + error.message);
     }
